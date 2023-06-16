@@ -34,7 +34,9 @@ if len(sys.argv)!=3:
 
 directory=os.getcwd()
 fname=sys.argv[1]
+#save just potential markers
 oname='{}/{}.csv'.format(directory, sys.argv[2])
+#saves all best hits for each gene
 o2name='{}/all_genes2.csv'.format(directory, sys.argv[2])
 
 
@@ -49,6 +51,7 @@ name_dict={'HALO': 'P. halophila',
 
 def parserBlastResults(file, output, output2):
     orga_dict=dict()
+    #at the same time saves the organism of origin of the best hit for each query gene
     tree = ET.parse(file)
     root = tree.getroot()
     n=0
@@ -79,6 +82,7 @@ def parserBlastResults(file, output, output2):
 
                             if len(org)==0:
                                 print(anot)
+                             #double heck that there are no Petrotoga present in the results
                             if re.search(r'Petrotoga ', anot):
                                 print('Petrotoga present:', anot)
 
@@ -111,11 +115,14 @@ def parserBlastResults(file, output, output2):
                 try:
                     best_hit=best_hits[0]
                 except:
+                    # it means there were no hits for the query
                     results=[cgene.name, str(len(cgene.hits)), 'no hits', 'no hits', 'no hits', 'no hits']
                     output.write('\t'.join(results) + '\n')
                     output2.write('\t'.join(results) + '\n')
                     continue
+                  
                 if best_hit.identity<30:
+                    #candidate marker gene!
                     output.write('\t'.join([cgene.name, str(len(cgene.hits)),  str(best_hit.org), str(best_hit.cover), str(best_hit.identity), str(best_hit.evalue)]) + '\n')
                 output2.write('\t'.join([cgene.name, str(len(cgene.hits)),  str(best_hit.org), str(best_hit.cover), str(best_hit.identity), str(best_hit.evalue)]) + '\n')
 
