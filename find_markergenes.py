@@ -146,40 +146,10 @@ k=list(sorted(organisms.keys()))
 x_vals=[organisms[key] for key in k]
 pal=sns.color_palette("husl", len(x_vals))
 
-
 f, ax1 = plt.subplots()
 ax=sns.barplot(x=x_vals, y=k, palette=[pal[i] for i in range(len(k))], ax=ax1)
 ax1.tick_params(axis='both', which='major', labelsize=4)
 ax1.spines['right'].set_visible(False)
 ax1.bar_label(ax.containers[0], fontsize=4)
 
-'''
-f, (ax1, ax2) = plt.subplots(ncols=2, nrows=1, sharey=False)
-
-ax=sns.barplot(x=x_vals, y=k, palette=[pal[i] for i in range(len(k))], ax=ax1)
-ax=sns.barplot(x=x_vals, y=k, palette=[pal[i] for i in range(len(k))], ax=ax2)
-
-ax1.tick_params(axis='both', which='major', labelsize=4)
-ax1.spines['right'].set_visible(False)
-ax1.bar_label(ax.containers[0], fontsize=4)
-
-ax2.tick_params(axis='both', which='major', labelsize=5)
-ax2.bar_label(ax.containers[0], fontsize=4)
-ax2.spines['left'].set_visible(False)
-ax2.get_yaxis().set_ticks([])
-
-ax1.set_xlim(0, 20)
-ax2.set_xlim(1100, 1150)
-
-#make cuts
-d = .01  # how big to make the diagonal lines in axes coordinates
-# arguments to pass to plot, just so we don't keep repeating them
-kwargs = dict(transform=ax1.transAxes, color='k', clip_on=False)
-ax1.plot((1-d, 1+d), (1-d, 1+d), **kwargs)        # top-left diagonal
-ax1.plot((1 - d, 1 + d), (-d, +d), **kwargs)  # top-right diagonal
-
-kwargs.update(transform=ax2.transAxes)  # switch to the bottom axes
-ax2.plot((-d, +d), (1 - d, 1 + d), **kwargs)  # bottom-left diagonal
-ax2.plot((- d, + d), (- d, + d), **kwargs)  # bottom-right diagonal
-'''
 plt.savefig('/home/mcoin/Petrotoga/blastp/hist_blastp_{}'.format(sys.argv[2]), dpi=300, bbox_inches='tight')
