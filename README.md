@@ -14,3 +14,5 @@ Functional analysis of core and specific genes, identification of marker genes.
 
 iii) [Reconstruction of the evolutionary history](https://github.com/mcmcoin/masterproject-Petrotoga/wiki/Evolutionary-history-reconstruction).
 Especially of pathways of interest.
+
+A more detailed description of the analysis can be found in the Wiki.
