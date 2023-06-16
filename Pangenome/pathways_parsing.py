@@ -62,22 +62,3 @@ for k in list(path.keys()):
 df=pd.DataFrame.from_dict(path)
 df.T.to_csv('OneDrive\Desktop\GhostKoala\paths_all_petrotogaceae.csv', sep='\t')
 
-#print(path)
-''''
-csv=''
-for k1 in list(path.keys())[0]:
-    csv+=' \t'
-    for k2 in list(path[k1].keys()):
-        csv+='{}\t'.format(k2)
-    csv.rstrip()
-    csv+='\n'
-
-for k1 in list(path.keys()):
-    csv+=''.format(k1)
-    for k2 in list(path[k1].keys()):
-        csv+='{}\t'.format(path[k1][k2])
-    csv.rstrip()
-    csv+='\n'
-
-print(csv)
-'''''
